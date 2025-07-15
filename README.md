@@ -21,7 +21,7 @@ A compact, portable ECG Holter monitor designed to acquire ECG signals and trans
 ## 🧰 Hardware Components
 
 | Component         | Description                                     |
-|---------------- --|-------------------------------------------------|
+|-------------------|-------------------------------------------------|
 | ESP32 MCU         | Ultra-low-power microcontroller & built-in wifi |
 | ECG Front-end     | AD8232 or custom analog front-end               |
 | SD Card Module    | For backup data logging                         |
