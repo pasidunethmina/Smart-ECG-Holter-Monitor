@@ -5,7 +5,7 @@ A compact, portable ECG Holter monitor designed to acquire ECG signals and trans
 
     
 - The [ads_1293](https://github.com/pasidunethmina/Smart-ECG-Holter-Monitor/tree/main/ads_1293) folder includes the codes for both Arduino framework and ESP-idf framework.   
-- [Firebase](https://github.com/pasidunethmina/Smart-ECG-Holter-Monitor/tree/main/firebase) folder only contains the files to upload data to firebase via wifi.
+- [firebase](https://github.com/pasidunethmina/Smart-ECG-Holter-Monitor/tree/main/firebase) folder only contains the files to upload data to firebase via wifi.
 
 ---
 
