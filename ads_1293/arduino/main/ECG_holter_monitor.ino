@@ -7,17 +7,14 @@
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial);
+  //while (!Serial);
   Serial.println("hhhhhhhhhhhhhhhh");
   // Initialize SPI and pins
   init_setup();
 }
 
 void loop() {
-  while (digitalRead(PIN_DRDYB)) {
-     delay(1);
-     Serial.println("jjjj"); 
-     }
+  while (digitalRead(PIN_DRDYB)) { delay(1); }
 
   uint8_t ecg_data[10] = {0};
   ads1293_read_ecg(ecg_data);
@@ -32,9 +29,9 @@ void loop() {
   ch2 = (ch2 & 0x800000) ? ch2 - 0x1000000 : ch2;
   ch3 = (ch3 & 0x800000) ? ch3 - 0x1000000 : ch3;
 
-  ch1_ = (float)ch1 / (1 << 23);
-  ch2_ = (float)ch2 / (1 << 23);
-  ch3_ = (float)ch3 / (1 << 23);
+  ch1_ = ch1/2^23;
+  ch2_ = ch2/2^23;
+  ch3_ = ch3/2^23;
 
   String ch1_str = String(ch1_);
   String ch2_str = String(ch2_);
@@ -53,5 +50,28 @@ void loop() {
   // Serial.print("  ");
   // Serial.println(3030000);  // Lower bound
   delay(5);
+
+  app.loop();
+  
+  // Check if authentication is ready
+  if (app.ready()){ 
+    unsigned long currentTime = millis();
+    if (currentTime - lastSendTime >= sendInterval){
+      lastSendTime = currentTime;
+
+      // Prepare data
+      String timeStr = getLocalTimeString();
+      floatValue1 = 0.01 + random(0, 100);
+      floatValue2 = 0.02 + random(0, 100);
+      floatValue3 = 0.03 + random(0, 100);
+      String combinedData = timeStr + "," + ch1_str + "," + ch2_str + "," + ch3_str;
+
+      // Send as one string to Firebase
+      Database.set<String>(aClient, "/Pasidu/CombinedData", combinedData, processData, "RTDB_Send_Combined");
+
+      // Update intValue for next round
+      intValue++;
+    }
+  }
 
 }
