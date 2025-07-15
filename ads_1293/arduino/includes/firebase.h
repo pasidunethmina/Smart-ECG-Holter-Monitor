@@ -15,8 +15,8 @@
 
 
 // Network and Firebase credentials
-#define WIFI_SSID "Galaxy A33 5G 87B5"
-#define WIFI_PASSWORD "duqo0858"
+#define WIFI_SSID "Dialog 4G 159"
+#define WIFI_PASSWORD "vinuka.1234"
 
 #define Web_API_KEY "AIzaSyAPQlPG6WhdHUKFZs2jcXJeuisI2lkZ6-8"
 #define DATABASE_URL "https://esp-32---firebase-default-rtdb.asia-southeast1.firebasedatabase.app"
