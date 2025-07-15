@@ -4,6 +4,7 @@
 #include <SPI.h>
 #include <SD.h>
 #include "data_store.h"
+#include "display.h"
 
 // Your SD card SPI pins
 #define PIN_NUM_MISO 13
@@ -11,44 +12,59 @@
 #define PIN_NUM_CLK  12
 #define PIN_NUM_CS   10
 
+SPIClass SPI_ECG(2);
 SPIClass SPI_SD(1);  // Create SPI bus instance (can also try HSPI if VSPI doesn’t work)
+
+// Tell TFT to use SPI_SD
+Adafruit_ST7735 tft(&SPI_SD, TFT_CS, TFT_DC, TFT_RST);
 
 
 void init_setup() {
-  SPI.begin(PIN_SCLK, PIN_MISO, PIN_MOSI, PIN_CS);
+  Serial.begin(115200);
+  delay(200);
+
+  // ========== Initialize ECG SPI (ADS1293) ==========
+  SPI_ECG.begin(PIN_SCLK, PIN_MISO, PIN_MOSI, PIN_CS);
   pinMode(PIN_CS, OUTPUT);
-  digitalWrite(PIN_CS, HIGH);
+  digitalWrite(PIN_CS, HIGH); // Deselect ADS
   pinMode(PIN_DRDYB, INPUT_PULLUP);
   pinMode(PIN_ALARMB, INPUT_PULLUP);
-  delay(100);
-  Serial.println("Initializing SD card...");
-  
-  // Initialize SPI_SD with your custom pins
-  SPI_SD.begin(PIN_NUM_CLK, PIN_NUM_MISO, PIN_NUM_MOSI, PIN_NUM_CS);
+  delay(50);
+
+  // ========== Initialize SD/TFT SPI ==========
+  SPI_SD.begin(PIN_NUM_CLK, PIN_NUM_MISO, PIN_NUM_MOSI, -1);
   pinMode(PIN_NUM_CS, OUTPUT);
   digitalWrite(PIN_NUM_CS, HIGH); // Deselect SD
+  pinMode(TFT_CS, OUTPUT);
+  digitalWrite(TFT_CS, HIGH);     // Deselect TFT
+  delay(50);
 
+  // ========== Initialize SD Card ==========
+  Serial.println("Initializing SD card...");
   if (!SD.begin(PIN_NUM_CS, SPI_SD)) {
-    Serial.println("SD Card Init Failed - Check:");
-    Serial.println("1. Different SPI pins than ADS1293");
-    Serial.println("2. SD card formatted as FAT32");
-    Serial.println("3. Proper power supply (3.3V stable)");
-    while(1); // Halt if SD fails
+    Serial.println("SD Card Init Failed - Check connections and format (FAT32).");
+    while (1);
   }
 
-  // Open in append mode (creates if doesn't exist)
+  // Open data file
   dataFile = SD.open(filename, FILE_WRITE);
   if (!dataFile) {
-    Serial.println("File open failed");
+    Serial.println("Failed to open file on SD card.");
   }
 
-  
-  // Initialize and configure ADS1293
+  // ========== Initialize TFT Display ==========
+  tft.initR(INITR_BLACKTAB);  // ST7735S (black tab)
+  tft.setRotation(1);         // Landscape
+  tft.fillScreen(ST77XX_BLACK);
+  showWelcomeScreen();
+
+  // ========== Initialize ADS1293 ==========
+  digitalWrite(PIN_CS, LOW);   // Select ADS1293
   ads1293_init();
   ads1293_write_reg(0x00, 0x01); // Soft reset
   delay(10);
-  
-  // Configuration settings
+  digitalWrite(PIN_CS, HIGH);  // Deselect ADS
+
   struct {
     uint8_t reg;
     uint8_t val;
@@ -61,14 +77,18 @@ void init_setup() {
   };
 
   for (size_t i = 0; i < sizeof(ads1293_config)/sizeof(ads1293_config[0]); ++i) {
+    digitalWrite(PIN_CS, LOW);
     ads1293_write_reg(ads1293_config[i].reg, ads1293_config[i].val);
+    digitalWrite(PIN_CS, HIGH);
     delay(2);
   }
 
-  ads1293_write_reg(0x00, 0x01); // Start conversion
-  
-  // Serial Plotter setup - add offsets to separate graphs
-  Serial.println("CH1\tCH2\tCH3");
+  // Start Conversion
+  digitalWrite(PIN_CS, LOW);
+  ads1293_write_reg(0x00, 0x03); // Start Conversions (active mode)
+  digitalWrite(PIN_CS, HIGH);
+
+  Serial.println("CH1\tCH2\tCH3");  // For Serial Plotter
 }
 
 #endif

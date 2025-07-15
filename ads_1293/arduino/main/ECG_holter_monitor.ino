@@ -14,7 +14,10 @@ void setup() {
 }
 
 void loop() {
-  while (digitalRead(PIN_DRDYB)) { delay(1); }
+  while (digitalRead(PIN_DRDYB)) {
+     delay(1);
+     Serial.println("jjjj"); 
+     }
 
   uint8_t ecg_data[10] = {0};
   ads1293_read_ecg(ecg_data);
@@ -29,9 +32,9 @@ void loop() {
   ch2 = (ch2 & 0x800000) ? ch2 - 0x1000000 : ch2;
   ch3 = (ch3 & 0x800000) ? ch3 - 0x1000000 : ch3;
 
-  ch1_ = ch1/2^23;
-  ch2_ = ch2/2^23;
-  ch3_ = ch3/2^23;
+  ch1_ = (float)ch1 / (1 << 23);
+  ch2_ = (float)ch2 / (1 << 23);
+  ch3_ = (float)ch3 / (1 << 23);
 
   String ch1_str = String(ch1_);
   String ch2_str = String(ch2_);
