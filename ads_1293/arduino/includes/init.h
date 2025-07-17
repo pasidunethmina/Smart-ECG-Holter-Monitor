@@ -22,7 +22,7 @@ void init_setup() {
   pinMode(PIN_DRDYB, INPUT_PULLUP);
   pinMode(PIN_ALARMB, INPUT_PULLUP);
   delay(100);
-  //Serial.println("Initializing SD card...");
+  Serial.println("Initializing SD card...");
   
   // Initialize SPI_SD with your custom pins
   SPI_SD.begin(PIN_NUM_CLK, PIN_NUM_MISO, PIN_NUM_MOSI, PIN_NUM_CS);
@@ -30,17 +30,17 @@ void init_setup() {
   digitalWrite(PIN_NUM_CS, HIGH); // Deselect SD
 
   if (!SD.begin(PIN_NUM_CS, SPI_SD)) {
-    // Serial.println("SD Card Init Failed - Check:");
-    // Serial.println("1. Different SPI pins than ADS1293");
-    // Serial.println("2. SD card formatted as FAT32");
-    // Serial.println("3. Proper power supply (3.3V stable)");
+    Serial.println("SD Card Init Failed - Check:");
+    Serial.println("1. Different SPI pins than ADS1293");
+    Serial.println("2. SD card formatted as FAT32");
+    Serial.println("3. Proper power supply (3.3V stable)");
     while(1); // Halt if SD fails
   }
 
   // Open in append mode (creates if doesn't exist)
   dataFile = SD.open(filename, FILE_WRITE);
   if (!dataFile) {
-    ///Serial.println("File open failed");
+    Serial.println("File open failed");
   }
 
   
@@ -78,10 +78,10 @@ void init_setup() {
   esp_sntp_servermode_dhcp(1);  // (optional)
 
   while (WiFi.status() != WL_CONNECTED) {
-    //Serial.print(".");
+    Serial.print(".");
     delay(300);
   }
-  //Serial.println("Connected");
+  Serial.println("Connected");
   
   // set notification call-back function
   sntp_set_time_sync_notification_cb(timeavailable);

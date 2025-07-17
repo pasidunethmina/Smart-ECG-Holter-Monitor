@@ -4,6 +4,7 @@
 #include "firebase.h"
 #include "init.h"
 
+unsigned long lastCheck = 0;
 
 void setup() {
   Serial.begin(9600);
@@ -67,7 +68,7 @@ void loop() {
       String combinedData = timeStr + "," + ch1_str + "," + ch2_str + "," + ch3_str;
 
       // Send as one string to Firebase
-      Database.set<String>(aClient, "/Pasidu/CombinedData", combinedData, processData, "RTDB_Send_Combined");
+      Database.push<String>(aClient, "/devices/dev001/data2", combinedData, processData, "RTDB_Send_Combined");
 
       // Update intValue for next round
       intValue++;
