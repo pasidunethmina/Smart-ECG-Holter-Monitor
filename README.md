@@ -1,7 +1,11 @@
 
 # 🫀 ECG Holter Monitor with IoT Integration
 
-A compact, portable ECG Holter monitor designed to acquire ECG signals and transmit them wirelessly using WiFi for real-time monitoring and analysis. Built using ESP32 microcontroller and integrated with cloud support for long-term data logging and remote access.
+A compact, portable ECG Holter monitor designed to acquire ECG signals and transmit them wirelessly using WiFi for real-time monitoring and analysis. Built using ESP32-S3 microcontroller and integrated with cloud support for long-term data logging and remote access.  
+
+    
+- The [ads_1293](https://github.com/pasidunethmina/Smart-ECG-Holter-Monitor/tree/main/ads_1293) folder includes the codes for both Arduino framework and ESP-idf framework.   
+- [firebase](https://github.com/pasidunethmina/Smart-ECG-Holter-Monitor/tree/main/firebase) folder only contains the files to upload data to firebase via wifi.
 
 ---
 
@@ -21,8 +25,8 @@ A compact, portable ECG Holter monitor designed to acquire ECG signals and trans
 
 | Component         | Description                                     |
 |-------------------|-------------------------------------------------|
-| ESP32 MCU         | Ultra-low-power microcontroller & built-in wifi |
-| ECG Front-end     | AD8232 or custom analog front-end               |
+| ESP32-S3 MCU      | built-in USB, ultra low power & built-in wifi   |
+| ECG Front-end     | ADS1293                                         |
 | SD Card Module    | For backup data logging                         |
 | Battery + Charger | Li-ion                                          |
 | Enclosure         | 3D-printed                                      |
