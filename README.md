@@ -11,6 +11,12 @@ This repository only contains micro-controller programming part and files for th
 
 ---
 
+## Machine Learning Model
+- Developed an ML model to detect abnormalities in ECG signals.
+- Trained and tested using a Kaggle dataset.
+
+---
+
 ## 📦 Features
 
 - ✅ Continuous ECG monitoring
