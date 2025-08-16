@@ -9,6 +9,7 @@ A compact, portable ECG Holter monitor designed to acquire ECG signals and trans
 
 ---
 
+[![Other Repo](https://img.shields.io/badge/GitHub-Other%20Repo-blue?logo=github)](https://github.com/SahanWeerasiri/Smart_Holter_Monitor.git)
 ## 📦 Features
 
 - ✅ Continuous ECG monitoring
