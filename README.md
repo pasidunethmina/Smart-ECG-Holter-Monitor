@@ -1,11 +1,13 @@
 
-# 🫀 ECG Holter Monitor with IoT Integration [![Other Repo](https://img.shields.io/badge/GitHub-Other%20Repo-blue?logo=github)](https://github.com/SahanWeerasiri/Smart_Holter_Monitor.git)
+# 🫀 ECG Holter Monitor with IoT Integration 
 
 A compact, portable ECG Holter monitor designed to acquire ECG signals and transmit them wirelessly using WiFi for real-time monitoring and analysis. Built using ESP32-S3 microcontroller and integrated with cloud support for long-term data logging and remote access.  
 
     
 - The [ads_1293](https://github.com/pasidunethmina/Smart-ECG-Holter-Monitor/tree/main/ads_1293) folder includes the codes for both Arduino framework and ESP-idf framework.   
 - [firebase](https://github.com/pasidunethmina/Smart-ECG-Holter-Monitor/tree/main/firebase) folder only contains the files to upload data to firebase via wifi.
+
+This repository only contains micro-controller programming part and files for the enclosure design. There is another repository for other part of this project. [![Other Repo](https://img.shields.io/badge/GitHub-Other%20Repo-blue?logo=github)](https://github.com/SahanWeerasiri/Smart_Holter_Monitor.git)
 
 ---
 
