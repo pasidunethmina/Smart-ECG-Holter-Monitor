@@ -4,7 +4,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
 
 def load_and_plot():
-    file_path = filedialog.askopenfilename(filetypes=[("Text files", "*.txt")])
+    file_path = filedialog.askopenfilename(filetypes=[("CSV files", "*.csv")])
     if not file_path:
         return
 
@@ -16,6 +16,7 @@ def load_and_plot():
             data = [float(val.strip()) for val in content.replace('\n', ',').split(',') if val.strip()]
 
         # Clear previous plot
+        print(data)
         ax.clear()
         ax.plot(data, label="ECG Signal")
         ax.set_title("ECG Plot")

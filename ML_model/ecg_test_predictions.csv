@@ -1,4 +1,2 @@
 ECG_ID,Prediction
-1,Abnormal
-2,Abnormal
-3,Normal
+1,Normal
