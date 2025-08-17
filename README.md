@@ -24,7 +24,7 @@ This repository only contains micro-controller programming part and files for th
   - Saved the trained model using `keras` and the fitted scaler with `joblib`.
   - Ready for integration with Python-based ECG GUI for real-time predictions.
 - **Repository structure**:
-  - `ML_model/` → contains model code, training scripts, dataset and results.
+  - `ML_model/` → contains model code, training scripts, dataset and [results](https://github.com/pasidunethmina/Smart-ECG-Holter-Monitor/tree/main/ML_model/results).
   - `scaler.pkl` → saved scaler for normalizing incoming ECG data.
 ---
 
