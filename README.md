@@ -13,7 +13,7 @@ This repository only contains micro-controller programming part and files for th
 
 ## Machine Learning Model
 - Developed a [Convolutional Neural Network (CNN) model](https://github.com/pasidunethmina/Smart-ECG-Holter-Monitor/tree/main/ML_model) to detect abnormalities in ECG signals.
-- Trained and tested using a Kaggle dataset.
+- Trained and tested using a [Kaggle dataset](https://github.com/pasidunethmina/Smart-ECG-Holter-Monitor/blob/main/ML_model/data_sets/ecg_train1.csv).
 
 ---
 
