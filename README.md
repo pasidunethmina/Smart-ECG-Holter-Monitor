@@ -13,8 +13,19 @@ This repository only contains micro-controller programming part and files for th
 
 ## Machine Learning Model
 - Developed a [Convolutional Neural Network (CNN) model](https://github.com/pasidunethmina/Smart-ECG-Holter-Monitor/tree/main/ML_model) to detect abnormalities in ECG signals.
-- Trained and tested using a Kaggle dataset.
-
+- Trained and tested using a [Kaggle dataset](https://github.com/pasidunethmina/Smart-ECG-Holter-Monitor/blob/main/ML_model/data_sets/ecg_train1.csv).
+- **Data preprocessing**:
+  - Normalized signals using **StandardScaler** to improve training stability.
+  - Reshaped signals for 1D CNN input `(samples, time steps, 1 channel)`.
+- **Model training**:
+  - Split dataset into training and testing sets.
+  - Trained CNN to classify normal and abnormal ECG patterns.
+- **Model deployment**:
+  - Saved the trained model using `keras` and the fitted scaler with `joblib`.
+  - Ready for integration with Python-based ECG GUI for real-time predictions.
+- **Repository structure**:
+  - `ML_model/` → contains model code, training scripts, dataset and [results](https://github.com/pasidunethmina/Smart-ECG-Holter-Monitor/tree/main/ML_model/results).
+  - `scaler.pkl` → saved scaler for normalizing incoming ECG data.
 ---
 
 ## 📦 Features
