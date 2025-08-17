@@ -15,14 +15,18 @@ def parse_ecg_line(line):
         r'([0-9A-Fa-f]{2})\s+([0-9A-Fa-f]{2})\s+([0-9A-Fa-f]{2})', line)
     if m:
         # Convert hex bytes to integers
+        
         bytes_data = [int(m.group(i), 16) for i in range(1, 10)]
+        
         # 24 bits per channel
         ch1 = (bytes_data[0] << 16) | (bytes_data[1] << 8) | bytes_data[2]
         ch2 = (bytes_data[3] << 16) | (bytes_data[4] << 8) | bytes_data[5]
         ch3 = (bytes_data[6] << 16) | (bytes_data[7] << 8) | bytes_data[8]
         # Handle signed 24-bit values
-        def to_signed24(val):
-            return val - 0x1000000 if val & 0x800000 else val
+        def to_signed24(x):
+            if x & 0x800000:  # if sign bit (bit 23) is set
+                x -= 0x1000000  # subtract 2^24 to sign-extend
+            return x*2.4*2/(2**23)
         ch1 = to_signed24(ch1)
         ch2 = to_signed24(ch2)
         ch3 = to_signed24(ch3)
@@ -58,9 +62,9 @@ def main():
                 ecg_ch2 = ecg_ch2[-500:]
                 ecg_ch3 = ecg_ch3[-500:]
                 lines[0].set_data(np.arange(len(ecg_ch1)), ecg_ch1)
-                lines[1].set_data(np.arange(len(ecg_ch2)), ecg_ch2)
-                lines[2].set_data(np.arange(len(ecg_ch3)), ecg_ch3)
-                for i, ecg in enumerate([ecg_ch1, ecg_ch2, ecg_ch3]):
+                #lines[1].set_data(np.arange(len(ecg_ch2)), ecg_ch2)
+                #lines[2].set_data(np.arange(len(ecg_ch3)), ecg_ch3)
+                for i, ecg in enumerate([ecg_ch1]):
                     axs[i].relim()
                     axs[i].autoscale_view()
                 plt.pause(0.01)
