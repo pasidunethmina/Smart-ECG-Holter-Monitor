@@ -24,7 +24,7 @@ This repository only contains micro-controller programming part and files for th
   - Saved the trained model using `keras` and the fitted scaler with `joblib`.
   - Ready for integration with Python-based ECG GUI for real-time predictions.
 - **Repository structure**:
-  - `ML_model/` → contains model code, training scripts, and dataset.
+  - `ML_model/` → contains model code, training scripts, dataset and results.
   - `scaler.pkl` → saved scaler for normalizing incoming ECG data.
 ---
 
