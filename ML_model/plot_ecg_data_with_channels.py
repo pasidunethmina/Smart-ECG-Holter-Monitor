@@ -3,6 +3,11 @@ from tkinter import filedialog
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
 
+def to_signed24(x):
+            if x & 0x800000:  # if sign bit (bit 23) is set
+                x -= 0x1000000  # subtract 2^24 to sign-extend
+            return x*2.4*2/(2**23)
+
 def load_and_plot():
     file_path = filedialog.askopenfilename(filetypes=[("Text files", "*.txt"), ("Log files", "*.log")])
     if not file_path:
@@ -15,9 +20,9 @@ def load_and_plot():
             for line in file:
                 parts = line.strip().split()
                 if len(parts) == 3:
-                    ch1.append(float(parts[0]))
-                    ch2.append(float(parts[1]))
-                    ch3.append(float(parts[2]))
+                    ch1.append(to_signed24(int(parts[0])))
+                    ch2.append(to_signed24(int(parts[1])))
+                    ch3.append(to_signed24(int(parts[2])))
 
         # Clear previous plot
         ax.clear()
