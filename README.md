@@ -51,3 +51,6 @@ This repository only contains micro-controller programming part and files for th
 | Enclosure         | 3D-printed                                      |
 
 ---
+
+# The Champions of SLIoT Challenge 2025 - Open Category
+
