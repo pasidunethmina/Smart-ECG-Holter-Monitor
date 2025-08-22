@@ -54,4 +54,6 @@ This repository only contains micro-controller programming part and files for th
 
 # The Champions of SLIoT Challenge 2025 - Open Category 🏆
 
+We emerged as the Champions of the SLIoT Challenge 2025 – Open Category with our Smart ECG Holter Monitor.
+
 ![Alt text](assets/img_sliot.jpg)
