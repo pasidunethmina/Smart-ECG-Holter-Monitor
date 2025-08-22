@@ -52,6 +52,6 @@ This repository only contains micro-controller programming part and files for th
 
 ---
 
-# The Champions of SLIoT Challenge 2025 - Open Category
+# The Champions of SLIoT Challenge 2025 - Open Category 🏆
 
 ![Alt text](assets/img_sliot.jpg)
