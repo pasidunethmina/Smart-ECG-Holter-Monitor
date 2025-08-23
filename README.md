@@ -31,6 +31,7 @@ This repository only contains micro-controller programming part and files for th
 ## 📦 Features
 
 - ✅ Continuous ECG monitoring
+- ✅ ML model to detect abnormalities of ECG signals of a patient
 - 📡 WiFi-enabled data transmission
 - 💾 SD card storage for offline data logging
 - 🔋 Battery-powered for portability
