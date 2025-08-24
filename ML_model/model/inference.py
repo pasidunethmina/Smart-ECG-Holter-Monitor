@@ -3,7 +3,7 @@ import tensorflow as tf
 from tensorflow import keras
 
 def model_fn(model_dir):
-    model = keras.models.load_model(f"{model_dir}/ecg_cnn_model.keras")
+    model = r"C:\Users\acer\Smart-ECG-Holter-Monitor\ML_model\model_package\ecg_cnn_model.keras"
     return model
 
 def input_fn(request_body, content_type='application/json'):
