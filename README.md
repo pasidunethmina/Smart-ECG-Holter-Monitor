@@ -36,13 +36,11 @@ Key Highlights
 
 📦 Packaged the model into model.tar.gz and uploaded to Amazon S3
 
-⚙️ Created a SageMaker model and deployed it as an endpoint
+⚙️ Created a SageMaker model and deployed it as an [endpoint](https://github.com/pasidunethmina/Smart-ECG-Holter-Monitor/tree/main/assets/image.png)
 
 🌐 Enabled real-time inference via REST API calls
 
 🔒 Leveraged AWS IAM for secure role-based access
-
-☁️ Fully managed, auto-scaling deployment with AWS infrastructure
 
 ---
 ## 📦 Features
