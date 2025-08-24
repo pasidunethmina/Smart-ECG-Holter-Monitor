@@ -28,7 +28,7 @@ This repository only contains machine learning model part, micro-controller prog
   - `scaler.pkl` → saved scaler for normalizing incoming ECG data.
 ---
 
-🚀 ## ML Model Deployment on AWS
+## 🚀 ML Model Deployment on AWS
 
 We successfully deployed our ECG CNN Model to AWS SageMaker, making it accessible as a scalable and secure endpoint for real-time predictions.
 
